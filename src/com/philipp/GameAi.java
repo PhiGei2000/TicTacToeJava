@@ -3,7 +3,7 @@ package com.philipp;
 public class GameAi {
     private int nextMove = -1;
     private TicTacToe game ;
-    int depth;
+    private int depth;
 
     public GameAi(TicTacToe game, int depth) {
         this.game = game;
@@ -20,6 +20,7 @@ public class GameAi {
             return game.getWinner();
         }
 
+        int currentMove = this.depth - depth + 1;
         if(player) {
             int minScore = 0x7FFFFFFF;
 
@@ -40,7 +41,7 @@ public class GameAi {
                 }
             }
 
-            return minScore;
+            return minScore * currentMove;
         }
         else {
             int maxScore = -0x7FFFFFFF;
@@ -62,7 +63,7 @@ public class GameAi {
                 }
             }
 
-            return maxScore;
+            return maxScore * currentMove;
         }
     }
 }
